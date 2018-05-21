@@ -34,7 +34,7 @@ ${
   />
 }
 
-The awesome way to get started with Now on your device
+The awesome2 way to get started with Now on your device
 is by downloading [Now Desktop](https://zeit.co/download), a minimal application
 that runs in your menu bar and comes with the following features:
 
