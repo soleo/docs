@@ -1,5 +1,7 @@
 # ZEIT Documentation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/zeit/docs.svg)](https://greenkeeper.io/)
+
 This is the public documentation for **ZEIT now** all other related services.<br/>
 You can access this documentation online at https://zeit.co/docs .
 
