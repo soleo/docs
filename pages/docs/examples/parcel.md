@@ -27,7 +27,7 @@ Let's start with creating a new empty directory and moving into it:
 
 Next, create the project's `package.json` in that directory:
 
-```
+```json
 {
   "name": "parcel-app",
   "scripts": {
@@ -58,7 +58,7 @@ The command shown above installs all two dependencies and adds them to your `pac
 
 Now that the project's meta files are in place, we can start adding the code that will be rendered when a visitor accesses the site. We will create an `index.html`, `style.css`, `main.js` and `update.js`.
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,7 +77,7 @@ Now that the project's meta files are in place, we can start adding the code tha
 
 Our `index.html` will load the `./style.css` and `./main.js` files using normal `<link />` and `<script>` tags.
 
-```
+```css
 h1 {
   color: red;
   font-size: 5em;
@@ -86,13 +86,13 @@ h1 {
 
 Our `style.css` will just change the `<h1>` styles to be bigger and red.
 
-```
+```js
 import update from "./update.js";
 
 update("Hello, Now");
 ```
 
-```
+```js
 export default (str) => document.querySelector("h1").innerText = str;
 ```
 
@@ -106,7 +106,7 @@ Now let's see everything is workin. The `dev` script will run `parcel` in develo
 
 After this it will show you on your terminal the following output:
 
-```
+```bash
 ▲ parcel-app yarn dev
 yarn run v1.5.1
 warning package.json: No license field
@@ -159,7 +159,7 @@ If you don't want to build inside Now (eg. [your are building inside your CI pip
 
 To do so we need to add a `now.json` file to setup how Now will treat our deployments.
 
-```
+```json
 {
   "type": "static",
   "files": [
@@ -181,7 +181,7 @@ The JSON file above configure our deployment to be `static`, only upload the `./
 
 Now let's deploy our application running the following command:
 
-```
+```shell
 rm -r ./dist && npm run build && now
 ```
 
