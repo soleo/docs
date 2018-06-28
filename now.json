@@ -1,4 +1,7 @@
 {
   "type": "npm",
-  "alias": "docs.zeit.sh"
+  "alias": "docs.zeit.sh",
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
