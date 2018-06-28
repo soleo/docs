@@ -1,4 +1,5 @@
 {
+    "type": "npm",
     "env": {
         "JWT_SECRET": "@jwt-secret",
         "SERVER_PORT": "3000"
