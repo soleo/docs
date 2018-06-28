@@ -1,7 +1,6 @@
 {
-  "type": "npm",
-  "alias": "docs.zeit.sh",
-  "env": {
-    "NODE_ENV": "production"
-  }
+    "env": {
+        "JWT_SECRET": "@jwt-secret",
+        "SERVER_PORT": 3000
+    }
 }
