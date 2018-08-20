@@ -49,7 +49,7 @@ instructions.
 After you've completed the signup process (you can also use the form
 to log in), a window should open with your account's event feed inside.
 
-## Step 2: Deploying a Static Site
+## Step 2: Deploying a Static Site with Now
 
 Now that we're logged in, let's begin with deploying a
 simple static website.
