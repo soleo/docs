@@ -16,8 +16,6 @@ import Now from '../../../now/now'
 const CodeMirrorInstance =
   typeof window !== 'undefined' ? require('codemirror') : null
 
-import EXAMPLES from '../../../../lib/data/now-examples'
-
 function Preview(props) {
   return (
     <div className="preview">
@@ -98,7 +96,7 @@ class Editor extends React.PureComponent {
     super(props)
     this.state = {
       deploying: false,
-      selectedFilename: 'Dockerfile',
+      selectedFilename: props.main,
       vimMode: false
     }
     this.codeMirror = null
@@ -882,13 +880,7 @@ class Editor extends React.PureComponent {
 class Introduction extends React.PureComponent {
   constructor(props) {
     super(props)
-
-    // Randomly select one of the examples
-    const exampleNames = Object.keys(EXAMPLES)
-    const name = exampleNames[Math.floor(exampleNames.length * Math.random())]
-
-    const files = EXAMPLES[name]
-
+    const { name, files } = props.example
     this.state = {
       files,
       name,
@@ -963,7 +955,7 @@ to [our official clients](/download), exposed as simple HTTP endpoints.
 `
   ],
   [
-    <Editor name={this.state.name} files={this.state.files} onChange={this.onChange} key="1" />,
+    <Editor name={this.state.name} main={this.props.example.main} files={this.state.files} onChange={this.onChange} key="1" />,
     <Preview
       content={this.state.content}
       deploy={this.deploy}

@@ -13,10 +13,20 @@ import sections from '../components/api/sections'
 import FreezePageScroll from '../components/freeze-page-scroll'
 import authenticate from '../lib/authenticate'
 import data from '../lib/data/api'
+import examples from '../lib/data/now-examples'
 import withAPI from '../lib/with-api'
 
 if (typeof window !== 'undefined') {
   require('intersection-observer')
+}
+
+// Randomly select an example to use in the introduction section
+const selectExample = () => {
+  const exampleNames = Object.keys(examples)
+  const name = exampleNames[Math.floor(exampleNames.length * Math.random())]
+  const example = examples[name]
+  example.name = name
+  return example
 }
 
 class API extends React.PureComponent {
@@ -30,14 +40,16 @@ class API extends React.PureComponent {
   }
 
   static async getInitialProps({ req }) {
+    const example = selectExample()
+
     // We don't need to do any auth logic for static export
     const isServer = typeof window === 'undefined'
     if (isServer && !req.headers) {
-      return {}
+      return { example }
     }
 
     const { user } = await authenticate({ req })
-    return { user }
+    return { example, user }
   }
 
   componentDidMount() {
@@ -155,6 +167,7 @@ class API extends React.PureComponent {
                           <Section
                             user={props.user}
                             testingToken={props.testingToken}
+                            example={props.example}
                           />
                         </SectionContainer>
                       ) : null

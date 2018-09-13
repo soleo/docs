@@ -1,26 +1,30 @@
 const fs = require('fs-extra')
 const { resolve } = require('path')
 
-const examples = [
-  'crystal-hello',
-  'go-hello',
-  'node-micro',
-  'php-7-hello-world'
-]
+const examples = new Map([
+  ['crystal-hello', 'main.cr'],
+  ['go-hello', 'main.go'],
+  ['node-micro', 'server.js'],
+  ['php-7-hello-world', 'index.php']
+])
 
 async function main() {
   const nowExamplesDir = process.argv[2]
   const data = {}
   await Promise.all(
-    examples.map(async example => {
+    Array.from(examples.keys()).map(async example => {
+      const entrypoint = examples.get(example)
       const dir = resolve(nowExamplesDir, example)
       const filenames = await fs.readdir(dir)
-      data[example] = {}
+      data[example] = {
+        main: entrypoint,
+        files: {}
+      }
       await Promise.all(
         filenames.map(async filename => {
           const file = resolve(dir, filename)
           const contents = await fs.readFile(file, 'utf8')
-          data[example][filename] = contents
+          data[example].files[filename] = contents
         })
       )
     })
