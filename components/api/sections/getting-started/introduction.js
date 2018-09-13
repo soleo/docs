@@ -217,7 +217,11 @@ class Editor extends React.PureComponent {
                       .props.name}`}
                   >
                     {this.props.name}
-                  </ExternalLink>.
+                  </ExternalLink>{' '}
+                  (
+                  <ExternalLink href={`https://github.com/zeit/now-examples`}>
+                    see all examples
+                  </ExternalLink>).
                 </p>,
                 <p className="note bottom" key="2">
                   Edit the code however you like! Press <kb>esc</kb> to enter
